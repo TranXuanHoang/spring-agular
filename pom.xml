@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Building web app using spring and angular</description>
 
+    <name>spring-angular</name>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -62,8 +64,48 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+      
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <configuration>
+                    <!-- Find the version of Node by running 'node -v' -->
+                    <nodeVersion>v8.11.3</nodeVersion>
+                </configuration>
+                <executions>
+                    <!-- Install node and npm if they haven't been done before -->
+                    <execution>
+                        <id>install-npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                    <!-- Build the app (including build the Angular app and set
+                         the generated JavaScript files distribution
+                         "outputPath": "src/main/resources/static") -->
+                    <execution>
+                        <id>npm-build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run-script build</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Uncomment the following to run e2e test
+                    <execution>
+                        <id>npm-test</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>run-script e2e</arguments>
+                        </configuration>
+                        <phase>test</phase>
+                    </execution> -->
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
-
-	<name>spring-angular</name>
 </project>

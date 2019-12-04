@@ -4,9 +4,14 @@
 /dist
 /tmp
 /out-tsc
+/target
 
 # dependencies
 /node_modules
+/node
+
+# additional custom files
+git_control.sh
 
 # profiling files
 chrome-profiler-events.json
