@@ -1,0 +1,15 @@
+<div style="text-align:center" class="container">
+  <h1>
+    Welcome to {{title}}!
+  </h1>
+  <div class="container" [hidden]="!authenticated()">
+    <p>Id: <span>{{greeting.id}}</span></p>
+    <p>Message: <span>{{greeting.content}}!</span></p>
+  </div>
+  <div class= "container" [hidden]="authenticated()">
+    <p>
+      <a routerLinkActive="active" routerLink="/login">Login</a>
+      to see your greeting.
+    </p>
+  </div>
+</div>
