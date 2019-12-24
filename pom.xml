@@ -71,7 +71,7 @@
                 <version>1.8.0</version>
                 <configuration>
                     <!-- Find the version of Node by running 'node -v' -->
-                    <nodeVersion>v8.11.3</nodeVersion>
+                    <nodeVersion>v12.13.1</nodeVersion>
                 </configuration>
                 <executions>
                     <!-- Install node and npm if they haven't been done before -->
