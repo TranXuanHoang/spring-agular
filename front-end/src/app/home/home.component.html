@@ -5,6 +5,7 @@
   <div class="container" [hidden]="!authenticated()">
     <p>Id: <span>{{greeting.id}}</span></p>
     <p>Message: <span>{{greeting.content}}!</span></p>
+    <button class="btn btn-info" (click)="refreshMessage()">Refresh Contents</button>
   </div>
   <div class= "container" [hidden]="authenticated()">
     <p>

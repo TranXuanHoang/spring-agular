@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppService } from '../app.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AppService } from '../app.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  title;
-  greeting;
+  title: string;
+  greeting: object;
 
   constructor(private http: HttpClient, private app: AppService) {
     this.title = 'client';
@@ -17,8 +17,22 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getNewMessage();
+  }
+
+  refreshMessage() {
+    this.getNewMessage();
+  }
+
+  getNewMessage() {
     if (this.app.authenticated) {
-      this.http.get('resource').subscribe(data => this.greeting = data);
+      this.http.get('token').subscribe(data => {
+        const token = data['token'];
+        this.http
+          .get('http://localhost:9000/resource',
+               { headers: new HttpHeaders().set('X-Auth-Token', token) })
+          .subscribe(response => this.greeting = response);
+      });
     }
   }
 

@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"text-align:center\" class=\"container\">\n  <h1>\n    Welcome to {{title}}!\n  </h1>\n  <div class=\"container\" [hidden]=\"!authenticated()\">\n    <p>Id: <span>{{greeting.id}}</span></p>\n    <p>Message: <span>{{greeting.content}}!</span></p>\n  </div>\n  <div class= \"container\" [hidden]=\"authenticated()\">\n    <p>\n      <a routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n      to see your greeting.\n    </p>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"text-align:center\" class=\"container\">\n  <h1>\n    Welcome to {{title}}!\n  </h1>\n  <div class=\"container\" [hidden]=\"!authenticated()\">\n    <p>Id: <span>{{greeting.id}}</span></p>\n    <p>Message: <span>{{greeting.content}}!</span></p>\n    <button class=\"btn btn-info\" (click)=\"refreshMessage()\">Refresh Contents</button>\n  </div>\n  <div class= \"container\" [hidden]=\"authenticated()\">\n    <p>\n      <a routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n      to see your greeting.\n    </p>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -563,9 +563,20 @@ var HomeComponent = /** @class */ (function () {
         this.greeting = {};
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.getNewMessage();
+    };
+    HomeComponent.prototype.refreshMessage = function () {
+        this.getNewMessage();
+    };
+    HomeComponent.prototype.getNewMessage = function () {
         var _this = this;
         if (this.app.authenticated) {
-            this.http.get('resource').subscribe(function (data) { return _this.greeting = data; });
+            this.http.get('token').subscribe(function (data) {
+                var token = data['token'];
+                _this.http
+                    .get('http://localhost:9000/resource', { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('X-Auth-Token', token) })
+                    .subscribe(function (response) { return _this.greeting = response; });
+            });
         }
     };
     HomeComponent.prototype.authenticated = function () {

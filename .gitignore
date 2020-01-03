@@ -5,6 +5,15 @@
 /tmp
 /out-tsc
 /target
+/bin
+front-end/dist
+front-end/tmp
+front-end/target
+front-end/out-tsc
+back-end/dist
+back-end/tmp
+back-end/target
+back-end/out-tsc
 
 # dependencies
 /node_modules
