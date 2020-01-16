@@ -29,12 +29,18 @@ export class HomeComponent implements OnInit {
       this.http.get('token').subscribe(data => {
         const token = data['token'];
         this.http
-          .get('http://localhost:9000/resource',
+          .get('resource',
                { headers: new HttpHeaders().set('X-Auth-Token', token) })
           .subscribe(response => this.greeting = response);
       });
     }
   }
+  // getNewMessage() {
+  //   if (this.authenticated()) {
+  //     this.http.get('resource')
+  //       .subscribe(data => this.greeting = data);
+  //   }
+  // }
 
   authenticated() {
     return this.app.authenticated;

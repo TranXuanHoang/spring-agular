@@ -1,0 +1,15 @@
+<div style="text-align:center" class="container">
+    <div class= "container" [hidden]="!authenticated()">
+        <h2>Register Information</h2>
+
+        <p>ID: {{registerInfo.id}}</p>
+        <p>Username: {{registerInfo.username}}</p>
+
+        <button class="btn btn-info" (click)="refreshInfo()">Refresh</button>
+    </div>
+    <div class= "container" [hidden]="authenticated()">
+        Please
+        <a routerLinkActive="active" routerLink="/login">login</a>
+        to get registration information.
+    </div>
+</div>

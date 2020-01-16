@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterInfoComponent } from './register-info/register-info.component';
 
 import { XhrInterceptor } from './xhr-interceptor';
 
@@ -15,7 +16,8 @@ import { XhrInterceptor } from './xhr-interceptor';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterInfoComponent
   ],
   imports: [
     BrowserModule,

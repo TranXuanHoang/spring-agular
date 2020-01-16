@@ -11,29 +11,31 @@ import javax.servlet.http.HttpSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+// import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
+@EnableZuulProxy
 public class SpringAngularApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(SpringAngularApplication.class, args);
   }
 
-  // @RequestMapping("/resource")
+  // @RequestMapping("/")
   public Map<String, Object> home() {
     Map<String, Object> model = new HashMap<String, Object>();
     model.put("id", UUID.randomUUID().toString());
-    model.put("content", "Hello World");
+    model.put("page", "Home Page");
     return model;
   }
 
@@ -80,7 +82,8 @@ public class SpringAngularApplication {
    * 
    * @see {@link https://docs.spring.io/spring-session/docs/2.2.0.RELEASE/reference/html5/guides/boot-redis.html}
    */
-  @EnableRedisHttpSession
-  protected static class HttpSessionConfiguration {
-  }
+  // @EnableRedisHttpSession
+  // protected static class HttpSessionConfiguration {
+  // }
+
 }

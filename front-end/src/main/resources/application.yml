@@ -1,0 +1,15 @@
+# If you use @EnableZuulProxy with the Spring Boot Actuator, you enable two additional endpoints:
+# - Routes
+# - Filters
+# See: https://cloud.spring.io/spring-cloud-netflix/multi/multi__router_and_filter_zuul.html#_management_endpoints
+# See (sensitive-headers): https://cloud.spring.io/spring-cloud-netflix/multi/multi__router_and_filter_zuul.html#_cookies_and_sensitive_headers
+zuul:
+    routes:
+        resource:
+            path: /resource/**
+            sensitive-headers:
+            url: http://localhost:9000/resource
+        register:
+            path: /register/**
+            sensitive-headers:
+            url: http://localhost:9001/register

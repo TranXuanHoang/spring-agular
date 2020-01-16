@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n  <ul class=\"nav nav-pills\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" routerLinkActive=\"active\" routerLink=\"/home\">Home</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"!authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" (click)=\"logout()\">Logout</a>\n    </li>\n  </ul>\n</div>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n  <ul class=\"nav nav-pills\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" routerLinkActive=\"active\" routerLink=\"/home\">Home</a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/register-info\">Register Info</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"!authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" (click)=\"logout()\">Logout</a>\n    </li>\n  </ul>\n</div>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>");
 
 /***/ }),
 
@@ -36,6 +36,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"alert alert-danger\" [hidden]=\"!error\">\n  There was a problem logging in. Please try again.\n</div>\n<form role=\"form\" (submit)=\"login()\">\n  <div class=\"form-group\">\n    <label for=\"username\">Username:</label>\n    <input type=\"text\" class=\"form-control\" id=\"username\" name=\"username\"\n      [(ngModel)]=\"credentials.username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password:</label>\n    <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\"\n      [(ngModel)]=\"credentials.password\">\n  </div>\n  <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n</form>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/register-info/register-info.component.html":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/register-info/register-info.component.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"text-align:center\" class=\"container\">\n    <div class= \"container\" [hidden]=\"!authenticated()\">\n        <h2>Register Information</h2>\n\n        <p>ID: {{registerInfo.id}}</p>\n        <p>Username: {{registerInfo.username}}</p>\n\n        <button class=\"btn btn-info\" (click)=\"refreshInfo()\">Refresh</button>\n    </div>\n    <div class= \"container\" [hidden]=\"authenticated()\">\n        Please\n        <a routerLinkActive=\"active\" routerLink=\"/login\">login</a>\n        to get registration information.\n    </div>\n</div>");
 
 /***/ }),
 
@@ -306,6 +319,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _register_info_register_info_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./register-info/register-info.component */ "./src/app/register-info/register-info.component.ts");
+
 
 
 
@@ -314,6 +329,7 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] },
+    { path: 'register-info', component: _register_info_register_info_component__WEBPACK_IMPORTED_MODULE_5__["RegisterInfoComponent"] },
     { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -431,7 +447,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.service */ "./src/app/app.service.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _xhr_interceptor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./xhr-interceptor */ "./src/app/xhr-interceptor.ts");
+/* harmony import */ var _register_info_register_info_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./register-info/register-info.component */ "./src/app/register-info/register-info.component.ts");
+/* harmony import */ var _xhr_interceptor__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./xhr-interceptor */ "./src/app/xhr-interceptor.ts");
+
 
 
 
@@ -451,7 +469,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
                 _home_home_component__WEBPACK_IMPORTED_MODULE_8__["HomeComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"]
+                _login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
+                _register_info_register_info_component__WEBPACK_IMPORTED_MODULE_10__["RegisterInfoComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -461,7 +480,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 _app_service__WEBPACK_IMPORTED_MODULE_7__["AppService"],
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _xhr_interceptor__WEBPACK_IMPORTED_MODULE_10__["XhrInterceptor"], multi: true }
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HTTP_INTERCEPTORS"], useClass: _xhr_interceptor__WEBPACK_IMPORTED_MODULE_11__["XhrInterceptor"], multi: true }
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
@@ -574,11 +593,17 @@ var HomeComponent = /** @class */ (function () {
             this.http.get('token').subscribe(function (data) {
                 var token = data['token'];
                 _this.http
-                    .get('http://localhost:9000/resource', { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('X-Auth-Token', token) })
+                    .get('resource', { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('X-Auth-Token', token) })
                     .subscribe(function (response) { return _this.greeting = response; });
             });
         }
     };
+    // getNewMessage() {
+    //   if (this.authenticated()) {
+    //     this.http.get('resource')
+    //       .subscribe(data => this.greeting = data);
+    //   }
+    // }
     HomeComponent.prototype.authenticated = function () {
         return this.app.authenticated;
     };
@@ -667,6 +692,81 @@ var LoginComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_app_service__WEBPACK_IMPORTED_MODULE_4__["AppService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/register-info/register-info.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/register-info/register-info.component.css ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlZ2lzdGVyLWluZm8vcmVnaXN0ZXItaW5mby5jb21wb25lbnQuY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/register-info/register-info.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/register-info/register-info.component.ts ***!
+  \**********************************************************/
+/*! exports provided: RegisterInfoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterInfoComponent", function() { return RegisterInfoComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../app.service */ "./src/app/app.service.ts");
+
+
+
+
+var RegisterInfoComponent = /** @class */ (function () {
+    function RegisterInfoComponent(http, app) {
+        this.http = http;
+        this.app = app;
+        this.registerInfo = {};
+    }
+    RegisterInfoComponent.prototype.ngOnInit = function () {
+        this.getRegistrationInfo();
+    };
+    RegisterInfoComponent.prototype.refreshInfo = function () {
+        this.getRegistrationInfo();
+    };
+    RegisterInfoComponent.prototype.getRegistrationInfo = function () {
+        var _this = this;
+        if (this.authenticated()) {
+            var id = Math.floor(Math.random() * 1000) + 1;
+            // Get info
+            this.http.get("register/info/" + id)
+                .subscribe(function (data) { return _this.registerInfo = data; });
+        }
+    };
+    RegisterInfoComponent.prototype.authenticated = function () {
+        return this.app.authenticated;
+        //return true;
+    };
+    RegisterInfoComponent.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+        { type: _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"] }
+    ]; };
+    RegisterInfoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-register-info',
+            template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./register-info.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/register-info/register-info.component.html")).default,
+            styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./register-info.component.css */ "./src/app/register-info/register-info.component.css")).default]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _app_service__WEBPACK_IMPORTED_MODULE_3__["AppService"]])
+    ], RegisterInfoComponent);
+    return RegisterInfoComponent;
 }());
 
 
