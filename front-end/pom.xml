@@ -48,13 +48,24 @@
 
 		<!-- Session + Redis -->
 		<!-- https://docs.spring.io/spring-session/docs/2.2.0.RELEASE/reference/html5/guides/boot-redis.html -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency> -->
+
+		<!-- OAuth2 -->
+		<!-- Because we are using Zuul in the UI layer,
+			we actually use spring-cloud-starter-oauth2
+			instead of spring-security-oauth2 directly
+			(this sets up some autoconfiguration for relaying tokens
+			through the proxy). -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-oauth2</artifactId>
 		</dependency>
 
 		<!-- Cloud: API Gateway, Zuul -->

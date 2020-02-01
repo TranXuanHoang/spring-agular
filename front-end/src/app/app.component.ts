@@ -15,7 +15,7 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+/*export class AppComponent {
 
   constructor(private http: HttpClient, private router: Router, private app: AppService) {
     // TODO
@@ -41,5 +41,40 @@ export class AppComponent {
 
   authenticated() {
     return this.app.authenticated;
+  }
+}*/
+
+export class AppComponent {
+  authenticated = false;
+  greeting = {};
+
+  constructor(private http: HttpClient) {
+    this.authenticate();
+  }
+
+  authenticate() {
+    this.http.get('user').subscribe(response => {
+      if (response['name']) {
+        this.authenticated = true;
+        console.log(response);
+        this.http.get('resource').subscribe(data => this.greeting = data);
+      } else {
+        this.authenticated = false;
+      }
+    }, error => { this.authenticated = false; });
+  }
+
+  logout() {
+    this.http.post('logout', {}).pipe(
+      catchError((err, caught) => {
+        // TODO - Handle error
+        console.error(">>>Error: " + err);
+        throw err;
+      }),
+      finalize(() => {
+        // Forcely logout
+        this.authenticated = false;
+      })
+    ).subscribe();
   }
 }

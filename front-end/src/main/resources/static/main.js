@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n  <ul class=\"nav nav-pills\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" routerLinkActive=\"active\" routerLink=\"/home\">Home</a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/register-info\">Register Info</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"!authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" (click)=\"logout()\">Logout</a>\n    </li>\n  </ul>\n</div>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <div class=\"container\">\n  <ul class=\"nav nav-pills\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link active\" routerLinkActive=\"active\" routerLink=\"/home\">Home</a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/register-info\">Register Info</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"!authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" routerLink=\"/login\">Login</a>\n    </li>\n    <li class=\"nav-item\" *ngIf=\"authenticated()\">\n      <a class=\"nav-link\" routerLinkActive=\"active\" (click)=\"logout()\">Logout</a>\n    </li>\n  </ul>\n</div>\n<div class=\"container\">\n  <router-outlet></router-outlet>\n</div> -->\n\n\n<div class=\"container\">\n  <ul class=\"nav nav-pills\">\n    <li><a>Home</a></li>\n    <li><a href=\"login\">Login</a></li>\n    <li><a (click)=\"logout()\">Logout</a></li>\n  </ul>\n</div>\n<div class=\"container\">\n  <h1>Greeting</h1>\n  <div [hidden]=\"!authenticated\">\n    <p>The ID is {{ greeting.id }}</p>\n    <p>The content is {{ greeting.content }}</p>\n  </div>\n  <div [hidden]=\"authenticated\">\n    <p>Login to see your greeting</p>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -374,51 +374,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.service */ "./src/app/app.service.ts");
-
-
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(http, router, app) {
+    function AppComponent(http) {
         this.http = http;
-        this.router = router;
-        this.app = app;
-        // TODO
-        // this.app.authenticate(undefined, undefined);
+        this.authenticated = false;
+        this.greeting = {};
+        this.authenticate();
     }
+    AppComponent.prototype.authenticate = function () {
+        var _this = this;
+        this.http.get('user').subscribe(function (response) {
+            if (response['name']) {
+                _this.authenticated = true;
+                console.log(response);
+                _this.http.get('resource').subscribe(function (data) { return _this.greeting = data; });
+            }
+            else {
+                _this.authenticated = false;
+            }
+        }, function (error) { _this.authenticated = false; });
+    };
     AppComponent.prototype.logout = function () {
         var _this = this;
-        console.log('Logout');
-        this.http.post('logout', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err, caught) {
+        this.http.post('logout', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err, caught) {
             // TODO - Handle error
             console.error(">>>Error: " + err);
             throw err;
-        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["finalize"])(function () {
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["finalize"])(function () {
             // Forcely logout
-            _this.app.authenticated = false;
-            _this.router.navigateByUrl('/login');
+            _this.authenticated = false;
         })).subscribe();
     };
-    AppComponent.prototype.authenticated = function () {
-        return this.app.authenticated;
-    };
     AppComponent.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
-        { type: _app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"] }
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
             template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
             styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")).default]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _app_service__WEBPACK_IMPORTED_MODULE_5__["AppService"]])
+        })
+        /*export class AppComponent {
+        
+          constructor(private http: HttpClient, private router: Router, private app: AppService) {
+            // TODO
+            // this.app.authenticate(undefined, undefined);
+          }
+        
+          logout() {
+            console.log('Logout');
+        
+            this.http.post('logout', {}).pipe(
+              catchError((err, caught) => {
+                // TODO - Handle error
+                console.error(">>>Error: " + err);
+                throw err;
+              }),
+              finalize(() => {
+                // Forcely logout
+                this.app.authenticated = false;
+                this.router.navigateByUrl('/login');
+              })
+            ).subscribe();
+          }
+        
+          authenticated() {
+            return this.app.authenticated;
+          }
+        }*/
+        ,
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], AppComponent);
     return AppComponent;
 }());
